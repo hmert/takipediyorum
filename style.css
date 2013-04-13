@@ -1,0 +1,127 @@
+/*  hmert */
+body{font-family:Helvetica, Arial, sans-serif;font-size:13px;line-height:1.4em;color:#333;background:#fff;position:relative;}
+body.content p{font-size:1em;line-height:1.4em;}
+a,a:link,a:active{color:#333;text-decoration:none;}
+a:visited{color:gray;}
+a:hover{color:#f30;}
+img{border:none;}
+#wrapper{position:relative;float:left;width:100%;}
+#opener{width:960px;height:90px;position:relative;background:#fff;z-index:100;margin:0 auto;padding:10px 0;}
+#content{position:relative;width:100%;margin:0;padding:0;}
+ul#all{float:left;list-style:none;width:960px;margin:15px 0;padding:0;}
+#headlines ul#all{margin-left:15px;width:660px;}
+ul#all li{float:left;display:inline;line-height:2em;width:220px;list-style:none;margin:0 15px 15px 0;}
+#headlines ul#all li{width:200px;}
+ul#all li h3{float:left;font-size:1em;}
+ul#all li h3 a{color:#fff;background:#ea6d4c;padding:2px 3px 3px;}
+ul#all li h3 a:visited{font-weight:700;}
+ul#all li h3 a:hover{background:#f77957;}
+ul#all li .new{float:left;height:11px;width:23px;text-indent:-9999em;background:url(/images/new.gif) no-repeat;margin:.4em 0 0 .5em;padding:0;}
+h3{display:inline;font-weight:400;font-size:1em;margin:0;padding:0;}
+.content #headlines{width:720px;padding:20px 200px 200px 20px;}
+.content a{text-decoration:underline;}
+.entry-bound img{margin:0 10px 10px 0;}
+.mf-viral{display:none;}
+.content h3{font-weight:400;font-size:1.4em;}
+.row-clear{clear:left;width:100%;height:0;overflow:hidden;}
+div.hide-feed{float:right;margin-top:.4em;}
+#headlines{width:990px;position:relative;margin:0 auto;padding:10px 0 20px;}
+#headlines #pagetitle{font-size:40px;font-weight:400;height:44px;width:630px;overflow:hidden;color:#4c4b4b;margin:0 15px 10px;padding:0;}
+#headlines ul.feed-block,#headlines ul.image-feed{list-style:none;width:300px;float:left;display:inline;margin:10px 15px;padding:0;}
+#headlines ul#top-five{background:#fcefe9;border:1px solid #f6d2c1;margin:0 5px;padding:9px;}
+#headlines ul.feed-block li,#headlines ul.image-feed li{position:relative;line-height:1.25em;margin:0;padding:4px 0;}
+#headlines ul.feed-block li h3,#headlines ul.image-feed li h3{position:absolute;font-size:.85em;line-height:1.5em;width:300px;height:1.25em;overflow:hidden;border-top:1px solid #ddd;margin:0;padding:4px 0;}
+#headlines ul.feed-block li h3:hover,#headlines ul.image-feed li h3:hover{height:auto;overflow:auto;background:#f6f6f6;z-index:11;}
+#headlines ul#top-five li h3{border-top:1px solid #f6d2c1;}
+#headlines ul#top-five li h3:hover{background:#fff;}
+#headlines ul.feed-block li.site h2,#headlines ul.image-feed li.site h2{font-weight:700;text-transform:uppercase;font-size:.9em;line-height:1.25em;letter-spacing:.05em;border:none;margin:0;}
+#headlines ul.feed-block li.hentry{height:1.25em;}
+.favicon{float:left;margin-left:-20px;}
+#footer{clear:both;width:960px;font-size:.8em;color:#727171;border-top:1px solid #e4e4e4;margin:2em auto 0;padding:1em 0 3em;}
+p.copyright{float:left;margin:1em 0;padding:0;}
+p.navigation{float:right;margin:1em 0;padding:0;}
+p.site-credits{float:right;clear:both;text-align:right;margin:0 0 1em;padding:.5em 0 1em;}
+#footer p.site-credits a{color:#828282;}
+.clear{clear:left;}
+.half{width:48%;}
+.left{float:left !important;}
+.right{float:right !important;}
+.center{text-align:center !important;}
+h3.subtitles{color:#545454;margin-left:2px;clear:left;}
+.pushed{bottom:-4em;}
+.tool-tip{color:#333;width:200px;border:1px solid #bebebe;z-index:13000;}
+.tool-tip div.bound{max-height:205px;_height:205px;overflow:hidden;}
+.tool-title{font-weight:700;font-size:1em;color:#717171;background:#f0f0f0;margin:0;padding:8px 15px;}
+.tool-text{font-size:.85em;line-height:1.4em;background:#f0f0f0;padding:0 15px 15px;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+* html .clearfix{height:1%;}
+.wait{background-image:url(ajaxloader.gif);background-repeat:no-repeat;background-position:center center;}
+
+
+
+.content #headlines a,li.site a,li.site a:link,li.site a:active,li.site a:visited,li.site a:hover{color:#d3401a;}
+ul#all li .description,.full-post,.hide,#cluetip-extra{display:none;}
+li.image-feed-entry,.inline{display:inline;}
+.show,.clearfix{display:block;}
+.cluetip-default div#cluetip-close,.cluetip-jtip div#cluetip-close{text-align:right;color:#900;margin:0 5px 5px;}
+
+#mansetler{margin: 0 auto; width:990px;}
+/* Container DIV - automatically generated */
+.simply-scroll-container { 
+	position: relative;
+}
+
+/* Clip DIV - automatically generated */
+.simply-scroll-clip { 
+	position: relative;
+	overflow: hidden;
+	z-index: 2;
+}
+
+/* UL/OL/DIV - the element that simplyScroll is inited on
+Class name automatically added to element */
+.simply-scroll-list { 
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+	
+.simply-scroll-list li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+	
+.simply-scroll-list li img {
+	border: none;
+	display: block;
+}
+
+/* Custom class modifications - adds to / overrides above
+
+.simply-scroll is default base class */
+
+/* Container DIV */
+.simply-scroll { 
+	width: 990px;
+	height: 200px;
+	margin-bottom: 1em;
+}
+
+/* Clip DIV */
+.simply-scroll .simply-scroll-clip {
+	width: 990px;
+	height: 200px;
+}
+	
+/* Explicitly set height/width of each list item */	
+.simply-scroll .simply-scroll-list li {
+	float: left; /* Horizontal scroll only */
+	width: 135px;
+	height: 200px;
+}

@@ -1,0 +1,134 @@
+<?php
+set_time_limit(0);
+function gF($url){
+	$con = file_get_contents($url,true);
+	return $con;
+}
+function netProxy($url, $title,$favicon){
+	$type = (isset($type))? $type : 'feed';
+	$rawUrl = $url;
+	$url = "http://www.netvibes.com/proxy/ajaxProxy.php?url=$url&rss=1&type=json&callbackMode=function";
+	$file = json_decode(file_get_contents($url));
+	$feedContent='';
+	$feedContent.='<ul class="feed-block">
+	<li class="site">
+	  <h2><a href="'.$rawUrl.'" target="_blank" class="snap_shots"><img src="'.$favicon.'" width="16" height="16" /> '.$title.'</a></h2>
+	</li>';
+	
+	for($i=0;$i<5;$i++){
+		$imgFeed = '';
+		$ifeed = uniqid();
+		$imgFeed ='';// ($file->items[$i]->thumb!='') ? '<img width="240" src="'.$file->items[$i]->thumb.'" />' : '';
+		$feedContent.='<li class="hentry">
+		  <h3 class="entry-title"><a href="'.$file->items[$i]->link.'" rel="#'.$ifeed.'-full" target="_blank">'.$file->items[$i]->title.'</a></h3>
+		  <div id="'.$ifeed.'-full" class="full-post"><div class="published">'.$file->items[$i]->date.'</div><div class="entry-content"><div class="entry-bound">'.$imgFeed.$file->items[$i]->content.'</div></div></div>
+		</li>';
+		$ifeed = '';
+	}
+	$feedContent.='</ul>';
+	echo $feedContent;
+
+}
+/****************************************************
+ SET HTTP HEADERS
+****************************************************/
+header('Content-type:text/html; charset=utf-8');
+setlocale(LC_TIME, 'tr_TR');
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="jquery.qtip.min.css" type="text/css" media="screen" charset="utf-8" />
+<title>Takipediyorum.com | Haber</title>
+</head>
+
+<div id="wrapper">
+  <div id="opener">
+      <h1 id="pagetitle" class="din"> TAKİPEDİYORUM.COM | HABER</h1>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+  
+</div>
+  <div id="content">
+<?php $doviz = json_decode(print_r(gF('http://www.doviz.com/doviz-widget/serbest-piyasa/USD-EUR'),true));?>
+<?php print_r(gF('http://www.doviz.com/altin-widget/ceyrek|altin22'),true);?>
+    <div id="headlines" class="hfeed clearfix">
+				<?php netProxy('http://www.ntvmsnbc.com/id/24927681/device/rss/rss.xml','ntvmsnbc','http://www.ntvmsnbc.com/favicon.ico'); ?>
+				<?php netProxy('http://sondakika.haber7.com/sondakika.rss','haber7','http://www.haber7.com/favicon.ico'); ?>
+				<?php netProxy('http://www.cnnturk.com/servisler/rss/anasayfa.rss','cnnturk','http://www.cnnturk.com/favicon.ico'); ?>
+				<div class="row-clear">&nbsp;</div>
+				
+				<?php netProxy('http://rss.internethaber.com/last_min.xml','internethaber','http://www.internethaber.com/favicon.ico'); ?>
+				<?php netProxy('http://www.zaman.com.tr/sondakika.rss','zaman','http://medya.zaman.com.tr/pics/zaman.ico'); ?>
+				<?php netProxy('http://podcast.samanyoluhaber.com/sondakika.rss','samanyoluhaber','http://www.samanyoluhaber.com/favicon.ico'); ?>
+				<?php //netProxy('http://www.sabah.com.tr/rss/sondakika.xml'); ?>
+				<div class="row-clear">&nbsp;</div>
+				
+				<?php netProxy('http://rss.hurriyet.com.tr/rss.aspx?sectionId=1','Hürriyet','http://www.hurriyet.com.tr/images/hurlogo.ico'); ?>
+				<?php netProxy('http://www.milliyet.com.tr/D/rss/rss/Rss_1.xml','milliyet','http://www.milliyet.com.tr/favicon.ico'); ?>
+				<?php netProxy('http://www.radikal.com.tr/d/rss/Rss_77.xml','radikal','http://www.radikal.com.tr/favicon.ico'); ?>
+				<div class="row-clear">&nbsp;</div>
+			
+				<?php netProxy('http://www.taraf.com.tr/rss/','taraf','http://www.taraf.com.tr/favicon.ico'); ?>
+				<?php netProxy('http://www.haberturk.com/haberturk.xml','haberturk','http://www.haberturk.com/favicon.ico'); ?>
+				<?php netProxy('http://www.tgrthaber.com.tr/Rss/FirstPage.asp','tgrt haber','http://www.tgrthaber.com.tr/favicon.ico'); ?>
+				<div class="row-clear">&nbsp;</div>
+			
+				<?php netProxy('http://www.cumhuriyet.com.tr/?xl=rss','cumhuriyet','http://www.cumhuriyet.com.tr/favicon.ico'); ?>
+				<?php netProxy('feed://www.haberx.com/haberx.rss','HaberX','http://www.haberx.com/favicon.ico'); ?>
+				<?php netProxy('http://www.haberaktuel.com/RSS/','haber aktuel','http://www.haberaktuel.com/favicon.ico'); ?>
+				<div class="row-clear">&nbsp;</div>
+			
+				<?php netProxy('http://www.aktifhaber.com/rss/','Aktif Haber','http://www.aktifhaber.com/favicon.ico'); ?>
+				<?php netProxy('http://trt.net.tr/rss/gundem.rss','trt','http://trt.net.tr/Sablonlar/trt.ico'); ?>
+				<?php netProxy('http://haber.mynet.com/RSSConverter.asp?type=flash','Mynet','http://img3.mynet.com/myfav/mynet.ico'); ?>
+				<div class="row-clear">&nbsp;</div>
+			  </div>
+		  </div>
+		</div>
+		<div id="footer" class="clearfix">
+		  <p class="copyright">T.1.00 sürüm &copy; 2011 &middot; Hizmeti <a href="http://www.hmert.com/">Hüseyin Mert</a> sağlamakta.</p>
+		  <p class="navigation"> <a href="http://www.takipediyorum.com/">hakkında</a> &middot; <a href="http://www.takipediyorum.com">iletişim</a></p>
+<!--
+	5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYANJjwURkG2On0LxeFokpCt8LXBxxOfxRWzmlvqrkY7BsItZOGlm4ClP+L5t/uff0K8HyaC1EVVPP0wQR/PHKCEuWTS6hSO/XSNOldhdPW2lWAsnu7JawimnFq8v2gbavmTTSMykeu6GvhREzVDQZR1kNWbjaRzut1/BA23KJFKFDELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIx7e0DUX5iXuAgaCnTXFo8p70O6xWMfALdBZC0HCXikHH8+V2esSPVZXN/0Jrv0fUknGervNqW2ijvWDR1eNJWB2swTK+jDkaOTahPLYK3s9w1CrJAO9OT81i4WT48prygn7T4Vosfjy9DCnrR1OA8YM2nQ0F7Mgj8umpWkFcWI7yaB9AvPqZELMz7I3+MpOBMX12eIuEsSejMl8q7zyxTVN2niyfcU/uh/rxoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIdd
+<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif" width="1" height="1">
+-->
+</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="jquery.qtip.pack.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.entry-title a').qtip({
+   content: {
+      text:function(api){
+	return $(this).parent().parent().find('.full-post').clone().html();
+   },
+position: {
+      viewport: $('#headlines')
+   },
+              show: { 
+                  event: 'mouseenter' 
+              }
+}
+});
+		});
+		</script>
+		<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+		try {
+		var pageTracker = _gat._getTracker("UA-2457153-13");
+		pageTracker._trackPageview();
+		} catch(err) {}</script>
+	</body>
+</html>
